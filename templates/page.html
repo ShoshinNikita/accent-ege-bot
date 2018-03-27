@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+    <title>Web_accent_bot</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <!--roboto font-->
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+	<!-- scripts -->
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js"></script>
+
+</head>
+<body>
+<header></header>
+<div class="row">
+    <!-- Форма рассылки -->
+    <div class="block">
+        <div class="blockheader">
+            Разослать сообщение пользователям
+        </div>
+
+        <div class="content">
+            Сообщение
+            <form method="POST">
+
+            <textarea name="message" aria-multiline="true" rows="10" cols="50" wrap="soft"
+					  style="resize:none; border: 1px solid #e6ebef;" class="myinput"></textarea>
+					  
+                Пароль
+                <input type="password" name="password" class="myinput" style=" border-bottom: 1px solid #e6ebef;">
+                <input type="submit" value="SEND" class="mybutton">
+            </form>
+        </div>
+    </div>
+
+    <!-- Статистика-->
+    <div class="block">
+        <div class="blockheader">
+            Статистика
+        </div>
+
+        <div class="content">
+            <table border="0" width="100%" cellpadding="5" align="center">
+                <tr>
+                    <th>Ответов за день: {{ stats["day"] }}</th>
+                    <th>Всего ответов: {{ stats["total"] }}</th>
+                </tr>
+
+                <tr>
+                    <th colspan="2">
+                        Уникальных пользователей сегодня: {{ stats["dailyUniqueUsers"] }}
+                    </th>
+                </tr>
+            </table>
+			
+			<canvas id="chartContainer" style="width: 450px; height: 200px"></canvas>
+
+			<p style="text-align: center"> Статистика за 24 часа </p>
+
+			<script src="{{ url_for('static', filename='js/chart.js') }}"></script>
+
+        </div>
+    </div>
+</div>
+</body>
